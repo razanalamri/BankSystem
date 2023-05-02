@@ -73,5 +73,10 @@ public class AccountController {
         return account;
     }
 
+    @RequestMapping(value = "createAccount", method = RequestMethod.POST)
+    public void createAccount(@RequestParam long accountNumber, Double balance,int id) {
+        accountServices.createAccount(accountNumber,balance,id);
+    }
+
 
 }

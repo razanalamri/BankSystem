@@ -15,6 +15,8 @@ public class Customer extends BaseEntity {
     String name;
     String email;
     String phoneNumber;
+
+
     public Integer getId() {
         return id;
     }

@@ -12,6 +12,9 @@ public class Account extends BaseEntity  {
     long accountNumber;
     Double balance;
 
+    @OneToOne
+    @JoinColumn(name = "customer_id", referencedColumnName = "id")
+    Customer customer;
     public Customer getCustomer() {
         return customer;
     }
@@ -20,9 +23,6 @@ public class Account extends BaseEntity  {
         this.customer = customer;
     }
 
-    @OneToOne
-    @JoinColumn(name = "customer_id", referencedColumnName = "id")
-    Customer customer;
 
     public Integer getId() {
         return id;

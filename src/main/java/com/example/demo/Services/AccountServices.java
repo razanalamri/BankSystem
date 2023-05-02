@@ -15,6 +15,9 @@ public class AccountServices {
     @Autowired
     AccountRepositry accountRepositry;
 
+    @Autowired
+    CustomerServices customerServices;
+
     public List<Account> getAllAccounts() {
         return accountRepositry.getAllAccounts();
     }
@@ -58,7 +61,21 @@ public class AccountServices {
     public Account getByUpdatedDate(Date updatedDate) {
         Account account = accountRepositry.getByUpdatedDate(updatedDate);
         return account;
-    }}
+    }
+
+    public void  createAccount(long accountNumber, Double balance,int id ) {
+        Account account=new Account();
+        account.setAccountNumber(accountNumber);
+        account.setBalance(balance);
+        account.setActive(true);
+        account.setCreatedDate(new Date());
+        account.setCustomer(customerServices.getById(id));
+        accountRepositry.save(account);
+    }
+
+
+
+}
 
 
 
