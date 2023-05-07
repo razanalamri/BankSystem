@@ -2,11 +2,14 @@ package com.example.demo.Services;
 
 
 import com.example.demo.Models.Account;
+import com.example.demo.Models.Transaction;
 import com.example.demo.Repositry.AccountRepositry;
 import com.example.demo.Repositry.CustomerRepositry;
+import com.example.demo.Repositry.TransactionRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.List;
 
@@ -17,6 +20,9 @@ public class AccountServices {
 
     @Autowired
     CustomerServices customerServices;
+
+    @Autowired
+    TransactionRepositry transactionRepositry;
 
     public List<Account> getAllAccounts() {
         return accountRepositry.getAllAccounts();
@@ -63,8 +69,8 @@ public class AccountServices {
         return account;
     }
 
-    public void  createAccount(long accountNumber, Double balance,int id ) {
-        Account account=new Account();
+    public void createAccount(long accountNumber, Double balance, int id) {
+        Account account = new Account();
         account.setAccountNumber(accountNumber);
         account.setBalance(balance);
         account.setActive(true);
@@ -73,18 +79,48 @@ public class AccountServices {
         accountRepositry.save(account);
     }
 
-    public Double getBalance(Integer id){
-        Double account=accountRepositry.getBalance(id);
+    public Double getBalance(Integer id) {
+        Double account = accountRepositry.getBalance(id);
         return account;
+    }
+
+    public Double UpdateTheBalanceAfterTransactions(Integer id) {
+        List<Account> accountList = accountRepositry.getAllAccounts();
+        for (Account account : accountList) {
+            Double transactionalAmount = transactionRepositry.getTransactionsAmountByAccountId(id);
+            Double AccountBalance = account.getBalance();
+            Double newBalance = AccountBalance - transactionalAmount;
+            account.setBalance(newBalance);
+            accountRepositry.save(account);
+
+
+    } return accountRepositry.getBalance(id);
+
+
     }
 
 
 
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

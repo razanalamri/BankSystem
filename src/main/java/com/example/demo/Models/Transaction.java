@@ -27,6 +27,13 @@ public class Transaction extends BaseEntity  {
     @JoinColumn(name = "creditCard_id", referencedColumnName = "id")
     CreditCard creditCard;
 
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    Account account;
+
+
+
+
     public Integer getId() {
         return id;
     }

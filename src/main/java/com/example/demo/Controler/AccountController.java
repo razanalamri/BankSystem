@@ -3,10 +3,8 @@ package com.example.demo.Controler;
 import com.example.demo.Models.Account;
 import com.example.demo.Services.AccountServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,6 +14,10 @@ public class AccountController {
 
     @Autowired
     AccountServices accountServices;
+
+
+
+
 
 
     @RequestMapping(value = "getAll", method = RequestMethod.GET)
@@ -83,6 +85,12 @@ public class AccountController {
         Double account=accountServices.getBalance(id);
         return account;
 
+    }
+
+    @RequestMapping(value = "UpdateTheBalanceAfterTransactions", method = RequestMethod.GET)
+    public Double UpdateTheBalanceAfterTransactions(@RequestParam Integer id){
+        Double account=accountServices.UpdateTheBalanceAfterTransactions(id);
+        return account;
     }
 
 
