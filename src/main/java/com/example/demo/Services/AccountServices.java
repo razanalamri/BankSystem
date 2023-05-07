@@ -1,17 +1,19 @@
 package com.example.demo.Services;
 
 
+import com.example.demo.DTO.AccountSummaryObject;
 import com.example.demo.Models.Account;
-import com.example.demo.Models.Transaction;
 import com.example.demo.Repositry.AccountRepositry;
-import com.example.demo.Repositry.CustomerRepositry;
 import com.example.demo.Repositry.TransactionRepositry;
+import net.sf.jasperreports.engine.*;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ResourceUtils;
 
+import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class AccountServices {
@@ -23,6 +25,8 @@ public class AccountServices {
 
     @Autowired
     TransactionRepositry transactionRepositry;
+
+    public static final String pathToReports = "C:\\Users\\user012\\Downloads\\Reports";
 
     public List<Account> getAllAccounts() {
         return accountRepositry.getAllAccounts();
@@ -94,7 +98,8 @@ public class AccountServices {
             accountRepositry.save(account);
 
 
-    } return accountRepositry.getBalance(id);
+        }
+        return accountRepositry.getBalance(id);
 
 
     }
@@ -108,11 +113,34 @@ public class AccountServices {
             account.setInterest(interestAmount);
             accountRepositry.save(account);
 
+        } }
+
+        public String generateReportForAccountSummary () throws FileNotFoundException, JRException {
+            List<Account> accounts = accountRepositry.getAllAccounts();
+            List<AccountSummaryObject> accountSummaryObjects = new ArrayList<>();
+            for (Account account : accounts) {
+                String name = account.getCustomer().getName();
+                long accountNumber = account.getAccountNumber();
+                Double balance = account.getBalance();
+                Double intrset=account.getInterest();
+                AccountSummaryObject accountSummaryObject = new AccountSummaryObject(name, accountNumber, balance,intrset);
+                accountSummaryObjects.add(accountSummaryObject);
+            }
+
+            File file = ResourceUtils.getFile("classpath:AccountSummary.jrxml");
+            JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+            var dataSource = new JRBeanCollectionDataSource(accountSummaryObjects);
+            Map<String, Object> paramters = new HashMap<>();
+            paramters.put("CreatedBy", "Razan");
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, paramters, dataSource);
+            JasperExportManager.exportReportToPdfFile(jasperPrint, pathToReports + "\\Accounts.pdf");
+            return "Report generated : " + pathToReports + "\\Accounts.pdf";
+
+
         }
 
 
-
-}}
+    }
 
 
 

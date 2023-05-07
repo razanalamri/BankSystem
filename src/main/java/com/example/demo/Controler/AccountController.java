@@ -2,10 +2,12 @@ package com.example.demo.Controler;
 
 import com.example.demo.Models.Account;
 import com.example.demo.Services.AccountServices;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 @RestController
@@ -96,6 +98,11 @@ public class AccountController {
     @RequestMapping(value = "getIntrset", method = RequestMethod.POST)
     public void getIntrset(@RequestParam Integer id){
         accountServices.getIntrset(id);
+    }
+
+    @RequestMapping(value = "reportOfAccountSummary")
+    public String generateReportForAccountSummary() throws JRException, FileNotFoundException {
+        return accountServices.generateReportForAccountSummary();
     }
 
 
