@@ -78,5 +78,16 @@ public class AccountController {
         accountServices.createAccount(accountNumber,balance,id);
     }
 
+    @RequestMapping(value = "getBalance", method = RequestMethod.GET)
+    public Double getBalance(@RequestParam  Integer id){
+        Double account=accountServices.getBalance(id);
+        return account;
+
+    }
+
+
+
+
+
 
 }

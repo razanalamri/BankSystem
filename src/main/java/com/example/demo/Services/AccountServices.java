@@ -73,6 +73,15 @@ public class AccountServices {
         accountRepositry.save(account);
     }
 
+    public Double getBalance(Integer id){
+        Double account=accountRepositry.getBalance(id);
+        return account;
+    }
+
+
+
+
+
 
 
 }

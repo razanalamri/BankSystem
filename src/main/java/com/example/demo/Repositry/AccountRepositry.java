@@ -37,6 +37,14 @@ public interface AccountRepositry extends CrudRepository<Account,Integer> {
 
     @Query(value="SELECT s from Account s where s.isActive =False")
     List<Account> getAllInActive();
+
+    @Query(value="SELECT s.balance from Account s where s.id = :id")
+    Double getBalance(@Param("id") Integer id);
+
+
+
+
+
 }
 
 
