@@ -93,6 +93,12 @@ public class AccountController {
         return account;
     }
 
+    @RequestMapping(value = "getIntrset", method = RequestMethod.POST)
+    public void getIntrset(@RequestParam Integer id){
+        accountServices.getIntrset(id);
+    }
+
+
 
 
 

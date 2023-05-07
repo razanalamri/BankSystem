@@ -12,6 +12,16 @@ public class Account extends BaseEntity  {
     long accountNumber;
     Double balance;
 
+    public Double getInterest() {
+        return interest;
+    }
+
+    public void setInterest(Double interest) {
+        this.interest = interest;
+    }
+
+    Double interest;
+
     @OneToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     Customer customer;

@@ -25,6 +25,10 @@ public class Loan extends BaseEntity {
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     Customer customer;
 
+    @OneToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    Account account;
+
 
     public Integer getId() {
         return id;
