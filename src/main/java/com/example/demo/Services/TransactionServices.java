@@ -1,5 +1,6 @@
 package com.example.demo.Services;
 
+import com.example.demo.Models.Account;
 import com.example.demo.Models.Transaction;
 import com.example.demo.Repositry.TransactionRepositry;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +42,19 @@ public class TransactionServices {
         return transaction;
     }
 
+    public List<Transaction> calculateTransactionFees(Integer id) {
+        List<Transaction> transactionList = transactionRepositry.getAllTransactions();
+        for (Transaction transaction : transactionList) {
+            Double amount = transaction.getAmount();
+            Double feesPercent = 0.5;
+            fees = amount * feesPercent;
+            transaction.setFees(fees);
+            transactionRepositry.save(transaction);
 
+        }
+
+
+    }
 
 
 }

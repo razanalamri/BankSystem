@@ -37,6 +37,13 @@ public class TransactionController {
         transactionServices.createNewTransaction(id,amount,isActive);
     }
 
+    @RequestMapping(value = "getFees", method = RequestMethod.POST)
+    public List<Transaction> calculateTransactionFees(@RequestParam Double fees){
+        List<Transaction> transactions=transactionServices.calculateTransactionFees(fees);
+        return  transactions;
+
+    }
+
 
 
 

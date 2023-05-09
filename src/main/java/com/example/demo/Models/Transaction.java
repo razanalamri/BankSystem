@@ -14,6 +14,16 @@ public class Transaction extends BaseEntity  {
     Double amount;
     Date transactionDate;
 
+    public Double getFees() {
+        return fees;
+    }
+
+    public void setFees(Double fees) {
+        this.fees = fees;
+    }
+
+    Double fees;
+
 
     public CreditCard getCreditCard() {
         return creditCard;
