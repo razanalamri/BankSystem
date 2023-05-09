@@ -27,6 +27,11 @@ public class TransactionController {
         return transaction;
     }
 
+    @RequestMapping(value = "createNewTransaction", method = RequestMethod.POST)
+    public void createNewTransaction(@RequestParam int id, Double amount,Boolean isActive) {
+        transactionServices.createNewTransaction(id,amount,isActive);
+    }
+
 
 
 
