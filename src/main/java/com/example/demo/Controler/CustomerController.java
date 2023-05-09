@@ -73,6 +73,11 @@ public class CustomerController {
         customerServices.createCustomer(email,name,phoneNumber);
     }
 
+    @RequestMapping(value = "updateCustomer",method = RequestMethod.POST)
+    public void updateCustomer(@RequestParam Integer id,String phoneNumber,String email){
+        customerServices.updateCustomer(id,phoneNumber,email);
+    }
+
 
 
 

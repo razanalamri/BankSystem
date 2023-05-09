@@ -63,4 +63,16 @@ public class CustomerServices {
         customer.setCreatedDate(new Date());
         customerRepositry.save(customer);
     }
+
+    public void updateCustomer(Integer id,String phoneNumber, String email){
+        Customer customer =customerRepositry.getById(id);
+        customer.setPhoneNumber(phoneNumber);
+        customer.setEmail(email);
+        customerRepositry.save(customer);
+    }
+
+//    public  getSpecificTransaction(Integer id) {
+//        Double account = accountRepositry.getBalance(id);
+//        return account;
+//    }
 }
