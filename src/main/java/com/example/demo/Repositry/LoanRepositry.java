@@ -1,4 +1,8 @@
 package com.example.demo.Repositry;
 
-public interface LoanRepositry {
+import com.example.demo.Models.Customer;
+import com.example.demo.Models.Loan;
+import org.springframework.data.repository.CrudRepository;
+
+public interface LoanRepositry extends CrudRepository<Loan,Integer> {
 }
