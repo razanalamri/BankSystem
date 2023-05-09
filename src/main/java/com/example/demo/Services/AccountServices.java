@@ -1,8 +1,10 @@
 package com.example.demo.Services;
 
 
+import com.example.demo.DTO.AccountHistoryObject;
 import com.example.demo.DTO.AccountSummaryObject;
 import com.example.demo.Models.Account;
+import com.example.demo.Models.Transaction;
 import com.example.demo.Repositry.AccountRepositry;
 import com.example.demo.Repositry.TransactionRepositry;
 import net.sf.jasperreports.engine.*;
@@ -138,6 +140,31 @@ public class AccountServices {
 
 
         }
+
+
+    public String generateReportForAccountHistory () throws FileNotFoundException, JRException {
+        List<Transaction> transactions = transactionRepositry.getAllTransactions();
+        List<AccountHistoryObject> accountHistoryObjects = new ArrayList<>();
+        for (Transaction transaction : transactions) {
+            long accountNumber=transaction.getAccount().getAccountNumber();
+            Date transactionDate=transaction.getTransactionDate();
+            Double amount=transaction.getAmount();
+            Double balance=transaction.getAccount().getBalance();
+            AccountHistoryObject accountHistoryObject = new AccountHistoryObject(accountNumber, transactionDate, amount,balance);
+            accountHistoryObjects.add(accountHistoryObject);
+        }
+
+        File file = ResourceUtils.getFile("classpath:AccountHistory.jrxml");
+        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+        var dataSource = new JRBeanCollectionDataSource(accountHistoryObjects);
+        Map<String, Object> paramters = new HashMap<>();
+        paramters.put("CreatedBy", "Razan");
+        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, paramters, dataSource);
+        JasperExportManager.exportReportToPdfFile(jasperPrint, pathToReports + "\\History.pdf");
+        return "Report generated : " + pathToReports + "\\History.pdf";
+
+
+    }
 
 
     }

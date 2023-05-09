@@ -105,6 +105,11 @@ public class AccountController {
         return accountServices.generateReportForAccountSummary();
     }
 
+    @RequestMapping(value = "reportForAccountHistory")
+    public String generateReportForAccountHistory() throws JRException, FileNotFoundException {
+        return accountServices.generateReportForAccountHistory();
+    }
+
 
 
 
