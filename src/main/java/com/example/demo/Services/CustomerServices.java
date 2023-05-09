@@ -1,5 +1,6 @@
 package com.example.demo.Services;
 
+import com.example.demo.Models.Account;
 import com.example.demo.Models.CreditCard;
 import com.example.demo.Models.Customer;
 import com.example.demo.Repositry.CustomerRepositry;
@@ -14,6 +15,7 @@ public class CustomerServices {
 
     @Autowired
     CustomerRepositry customerRepositry;
+
 
     public List<Customer> getAll() {
         return customerRepositry.getAll();
@@ -50,5 +52,15 @@ public class CustomerServices {
     public Customer getById(Integer id) {
         Customer customer = customerRepositry.getById(id);
         return customer;
+    }
+
+    public void createCustomer(String email,String name, String phoneNumber) {
+        Customer customer = new Customer();
+        customer.setEmail(email);
+        customer.setName(name);
+        customer.setPhoneNumber(phoneNumber);
+        customer.setActive(true);
+        customer.setCreatedDate(new Date());
+        customerRepositry.save(customer);
     }
 }

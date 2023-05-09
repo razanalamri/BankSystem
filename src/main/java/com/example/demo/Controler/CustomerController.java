@@ -68,5 +68,15 @@ public class CustomerController {
         return customer;
     }
 
+    @RequestMapping(value = "createCustomer", method = RequestMethod.POST)
+    public void createCustomer(@RequestParam String email,String name, String phoneNumber) {
+        customerServices.createCustomer(email,name,phoneNumber);
+    }
+
+
+
+
+
+
 
 }
