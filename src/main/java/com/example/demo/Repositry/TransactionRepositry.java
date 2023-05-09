@@ -16,6 +16,9 @@ public interface TransactionRepositry  extends CrudRepository<Transaction,Intege
     @Query(value = "select m.amount from Transaction m where m.account.id = :id ")
     Double getTransactionsAmountByAccountId(@Param("id") Integer id);
 
+    @Query(value = "select m from Transaction m where m.account.id = :id ")
+    List<Transaction> getTransactionsByAccountId(@Param("id") Integer id);
+
 
 
 

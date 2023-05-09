@@ -26,6 +26,11 @@ public class TransactionController {
         Double transaction=transactionServices.getTransactionsAmountByAccountId(id);
         return transaction;
     }
+    @RequestMapping(value = "getTransactionsByAccountId", method = RequestMethod.GET)
+    public List<Transaction> getTransactionsByAccountId(@RequestParam Integer id){
+        List<Transaction> transaction=transactionServices.getTransactionsByAccountId(id);
+        return transaction;
+    }
 
     @RequestMapping(value = "createNewTransaction", method = RequestMethod.POST)
     public void createNewTransaction(@RequestParam int id, Double amount,Boolean isActive) {

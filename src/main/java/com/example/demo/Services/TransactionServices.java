@@ -36,7 +36,10 @@ public class TransactionServices {
         transactionRepositry.save(transaction);
     }
 
-
+    public List<Transaction> getTransactionsByAccountId(Integer id) {
+        List<Transaction> transaction = transactionRepositry.getTransactionsByAccountId(id);
+        return transaction;
+    }
 
 
 
