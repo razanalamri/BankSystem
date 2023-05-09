@@ -6,7 +6,7 @@
     <field name="name" class="java.lang.String">
 
     </field>
-    <field name="accountNumber" class="java.lang.long">
+    <field name="accountNumber" class="java.lang.Long">
 
     </field>
     <field name="balance" class="java.lang.Double">
