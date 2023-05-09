@@ -3,12 +3,14 @@ package com.example.demo.Controler;
 import com.example.demo.Models.CreditCard;
 import com.example.demo.Models.Customer;
 import com.example.demo.Services.CustomerServices;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 
@@ -76,6 +78,11 @@ public class CustomerController {
     @RequestMapping(value = "updateCustomer",method = RequestMethod.POST)
     public void updateCustomer(@RequestParam Integer id,String phoneNumber,String email){
         customerServices.updateCustomer(id,phoneNumber,email);
+    }
+
+    @RequestMapping(value = "reportForCustomerAccountDetails")
+    public String getCustomerAccountDetails() throws JRException, FileNotFoundException {
+        return customerServices.getCustomerAccountDetails();
     }
 
 

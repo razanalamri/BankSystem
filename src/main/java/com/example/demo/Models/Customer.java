@@ -2,10 +2,8 @@ package com.example.demo.Models;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
 @Entity
 @Data
 public class Customer extends BaseEntity {
@@ -15,6 +13,7 @@ public class Customer extends BaseEntity {
     String name;
     String email;
     String phoneNumber;
+
 
 
     public Integer getId() {
