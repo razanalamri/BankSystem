@@ -25,4 +25,14 @@ public class LoanServices {
         loan.setCustomer(customerServices.getById(id));
         loanRepositry.save(loan);
     }
+    public Boolean getLoanStatus(Integer id) {
+        Boolean loan = loanRepositry.getLoanStatus(id);
+        return loan;
+    }
+
+
+
+
+
+
 }

@@ -19,4 +19,11 @@ public class LoanController {
     public void createNewLoan(@RequestParam int id ,Double amount,Boolean isActive) {
         loanServices.createNewLoan(id,amount,isActive);
     }
+
+    @RequestMapping(value = "getLoanStatus", method = RequestMethod.GET)
+    public Boolean getLoanStatus(@RequestParam  Integer id){
+        Boolean loan=loanServices.getLoanStatus(id);
+        return loan;
+
+    }
 }
