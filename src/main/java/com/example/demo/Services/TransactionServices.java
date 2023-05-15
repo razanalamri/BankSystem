@@ -26,9 +26,6 @@ public class TransactionServices {
     @Autowired
     AccountServices accountServices;
 
-    @Autowired
-    CreditCardServices creditCardServices;
-
     public static final String pathToReports = "C:\\Users\\user012\\Downloads\\Reports";
 
     public List<Transaction> getAllTransactions() {
@@ -55,16 +52,16 @@ public class TransactionServices {
         return transaction;
     }
 
-//    public void calculateTransactionFees(Integer id) {
-//        List<Transaction> transactionList = transactionRepositry.getAllTransactions();
-//        for (Transaction transaction : transactionList) {
-//            Double amount = transactionRepositry.getTransactionsAmountByAccountId(id);
-//            Double feesPercent = 0.5;
-//            Double fees = amount * feesPercent;
-//            transaction.setFees(fees);
-//            transactionRepositry.save(transaction);
-//
-//        }}
+    public void calculateTransactionFees() {
+        List<Transaction> transactionList = transactionRepositry.getAllTransactions();
+        for (Transaction transaction : transactionList) {
+            Double amount = transaction.getAmount();
+            Double feesPercent = 0.5;
+            Double fees = amount * feesPercent;
+            transaction.setFees(fees);
+            transactionRepositry.save(transaction);
+
+        }}
 
 
 

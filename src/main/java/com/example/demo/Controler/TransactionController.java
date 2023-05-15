@@ -41,11 +41,11 @@ public class TransactionController {
         transactionServices.createNewTransaction(id,amount,isActive);
     }
 
-//    @RequestMapping(value = "getFees", method = RequestMethod.POST)
-//    public void calculateTransactionFees(@RequestParam Integer id){
-//   transactionServices.calculateTransactionFees(id);
-//
-//    }
+    @RequestMapping(value = "getFees", method = RequestMethod.POST)
+    public void calculateTransactionFees(){
+   transactionServices.calculateTransactionFees();
+
+    }
 
 
     @RequestMapping(value="generateReportOfTransactionsWithinSpecificTimePeriod",method = RequestMethod.GET)
