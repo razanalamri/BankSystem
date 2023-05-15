@@ -28,12 +28,6 @@ public class CustomerController {
     }
 
 
-//    @RequestMapping(value = "getByCustomerName", method = RequestMethod.GET)
-//    public Customer getByCustomerName(@RequestParam String name){
-//        Customer customer=customerServices.getByCustomerName(name);
-//        return customer;
-//    }
-
     @RequestMapping(value = "getByCustomerEmail", method = RequestMethod.GET)
     public Customer getByCustomerEmail(@RequestParam  String email){
         Customer customer=customerServices.getByCustomerEmail(email);

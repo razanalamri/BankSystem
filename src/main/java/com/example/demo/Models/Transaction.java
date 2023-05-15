@@ -13,6 +13,8 @@ public class Transaction extends BaseEntity  {
     Integer id;
     Double amount;
     Date transactionDate;
+    Double fees;
+
 
     public Double getFees() {
         return fees;
@@ -22,7 +24,6 @@ public class Transaction extends BaseEntity  {
         this.fees = fees;
     }
 
-    Double fees;
 
 
     public CreditCard getCreditCard() {

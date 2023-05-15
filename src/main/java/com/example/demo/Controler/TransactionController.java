@@ -3,12 +3,16 @@ package com.example.demo.Controler;
 import com.example.demo.Models.Account;
 import com.example.demo.Models.Transaction;
 import com.example.demo.Services.TransactionServices;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.FileNotFoundException;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 @RestController
 @RequestMapping(value= "transaction" )
@@ -37,11 +41,16 @@ public class TransactionController {
         transactionServices.createNewTransaction(id,amount,isActive);
     }
 
-    @RequestMapping(value = "getFees", method = RequestMethod.POST)
-    public List<Transaction> calculateTransactionFees(@RequestParam Double fees){
-        List<Transaction> transactions=transactionServices.calculateTransactionFees(fees);
-        return  transactions;
+//    @RequestMapping(value = "getFees", method = RequestMethod.POST)
+//    public void calculateTransactionFees(@RequestParam Integer id){
+//   transactionServices.calculateTransactionFees(id);
+//
+//    }
 
+
+    @RequestMapping(value="generateReportOfTransactionsWithinSpecificTimePeriod",method = RequestMethod.GET)
+    public String generateReportOfTransactionsWithinSpecificTimePeriod() throws JRException, FileNotFoundException {
+        return transactionServices.generateReportOfTransactionsWithinSpecificTimePeriod();
     }
 
 
