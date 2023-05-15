@@ -106,10 +106,10 @@ public class AccountServices {
 
     }
 
-    public void getIntrset(Integer id) {
+    public void getIntrset() {
         List<Account> accountList = accountRepositry.getAllAccounts();
         for (Account account : accountList) {
-            Double balance = accountRepositry.getBalance(id);
+            Double balance = account.getBalance();
             Double interestPercent = 0.5;
             Double interestAmount = balance * interestPercent;
             account.setInterest(interestAmount);

@@ -96,8 +96,8 @@ public class AccountController {
     }
 
     @RequestMapping(value = "getIntrset", method = RequestMethod.POST)
-    public void getIntrset(@RequestParam Integer id){
-        accountServices.getIntrset(id);
+    public void getIntrset(){
+        accountServices.getIntrset();
     }
 
     @RequestMapping(value = "reportOfAccountSummary")
